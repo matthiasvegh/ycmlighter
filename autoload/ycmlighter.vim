@@ -1,0 +1,2 @@
+fun! ycmlighter#Enable()
+endf

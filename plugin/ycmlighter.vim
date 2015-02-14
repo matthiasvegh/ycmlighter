@@ -12,3 +12,7 @@ if !exists(":ClighterEnable")
 	finish
 endif
 
+augroup YcmLighterAutoStart
+	au FileType c,cpp,objc,objcpp call ycmlighter#Enable()
+augroup END
+
