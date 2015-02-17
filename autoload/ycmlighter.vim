@@ -14,7 +14,14 @@ endf
 
 fun! ycmlighter#SetFlags()
 	let flags = ycmlighter#GetFlags()
-	let flagslist = split(flags, ", ")
+	let length = strlen(flags)
+	let prunedflags = strpart(flags, 1, length-2)
+	echom prunedflags
+	" omit first and last chars, as they are brackets
+	let rawflags = substitute(prunedflags, "\'", "", "g")
+	echom rawflags
+	" remove surrounding apostrophes
+	let flagslist = split(rawflags, ", ")
 	call clighter#SetCompileArgs(flagslist)
 endf
 
