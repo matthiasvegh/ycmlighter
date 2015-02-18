@@ -1,4 +1,5 @@
 fun! ycmlighter#Enable()
+	call ycmlighter#SetFlags()
 endf
 
 fun! ycmlighter#GetFlags()
@@ -20,12 +21,12 @@ fun! ycmlighter#SetFlags()
 	let rawflags = substitute(prunedflags, "\'", "", "g")
 	" remove surrounding apostrophes
 	let flagslist = split(rawflags, ", ")
-	echo flagslist
-	echo g:ClighterCompileArgs
 	if flagslist != g:ClighterCompileArgs
 		call clighter#SetCompileArgs(flagslist)
 	endif
 endf
+
+autocmd BufEnter call ycmlighter#SetFlags()
 
 command! YcmLighterGetFlags call ycmlighter#PrintFlags()
 command! YcmLighterSetFlagsForClighter call ycmlighter#SetFlags()
