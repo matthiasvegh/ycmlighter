@@ -1,5 +1,9 @@
 fun! ycmlighter#Enable()
+	if &diff
+		return
+	endif
 	call ycmlighter#SetFlags()
+	autocmd BufRead,BufEnter,FileType * call ycmlighter#SetFlags()
 endf
 
 fun! ycmlighter#GetFlags()
@@ -26,7 +30,6 @@ fun! ycmlighter#SetFlags()
 	endif
 endf
 
-autocmd BufRead,BufEnter,FileType * call ycmlighter#SetFlags()
 
 command! YcmLighterGetFlags call ycmlighter#PrintFlags()
 command! YcmLighterSetFlagsForClighter call ycmlighter#SetFlags()
